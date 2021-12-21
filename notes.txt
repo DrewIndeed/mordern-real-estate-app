@@ -1,0 +1,6 @@
+1/ References
+- Tutorial: https://www.youtube.com/watch?v=y47gYvXchXM
+- RapidAPI: https://rapidapi.com/hub
+- Source Code: https://github.com/adrianhajdin/projects_realestate
+- Extras: https://gist.github.com/adrianhajdin/2fb91c8b6e7b2e64671c85ea4c05cbc9
+
