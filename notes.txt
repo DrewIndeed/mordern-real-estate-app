@@ -4,3 +4,44 @@
 - Source Code: https://github.com/adrianhajdin/projects_realestate
 - Extras: https://gist.github.com/adrianhajdin/2fb91c8b6e7b2e64671c85ea4c05cbc9
 
+2/ Reflection
+- Data fetching in Next.js: https://nextjs.org/docs/basic-features/data-fetching
+
+- Steps to fetch data from api: 
+  + import axios from "axios";
+  + contains the base_url
+  + write ASYNC function with url string as param
+  + deconstruct response as { data }
+  + get(url, { headers: {...} }}
+  + return data
+
+- At index, use fetchApi() in getStaticProps(context)
+  + read api docs for additional options in url + what needs to be returned in props: {...}
+  + use test endpoint to preview fetching results 
+
+- Wrap a Link outside another component, that component will be clickable to deirect somewhere
+
+- {title.length > 30 ? title.substring(0, 30) + '...' : title}
+
+- 'children' prop of a Component represents the child components that will be wrapped inside that component
+
+- Commit 8: For the chakra-ui library to actually be applied, we need to wrap the Main App Layout inside <ChakraProvider>
+
+- Commit 9: how to use Menu, MenuButton, MenuList, MenuItem from chakra-ui/react
+
+- Commit 11: {searchFilters && <SearchFilters />} -> used && operator to toggle a div or a Component
+
+- Commit 13: create a filter data file for search functionality
+
+- Commit 14: use 'useRouter' of next/router to manipulate url
+
+- NEXT.js has File-based Routing
+
+- Commit 15: LEARN MORE ABOUT THIS
+  + how to use { ScrollMenu, VisibilityContext } from 'react-horizontal-scrolling-menu'
+  + how to use { useContext } from 'react'
+
+- Commit 17: how to use NProgress (a progress bar indicating that things are loading)
+
+- Commit 18 and 19: EXTREMLY IMPORTANT
+  + the export name of the Component and the file name of the Componet MUST MATCH, otherwise, cannot deploy!
