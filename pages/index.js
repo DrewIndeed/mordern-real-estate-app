@@ -53,9 +53,9 @@ export default function Home({ propertiesForSale, propertiesForRent }) {
         buttonText="Explore Renting"
       />
       <Flex flexWrap="wrap">
-      {propertiesForRent.map((ppt) => (
-        <Property property={ppt} key={ppt.id} />
-      ))}
+        {propertiesForRent.map((ppt) => (
+          <Property property={ppt} key={ppt.id} />
+        ))}
       </Flex>
       <Banner
         imageUrl="https://bayut-production.s3.eu-central-1.amazonaws.com/image/110993385/6a070e8e1bae4f7d8c1429bc303d2008"
@@ -67,9 +67,11 @@ export default function Home({ propertiesForSale, propertiesForRent }) {
         linkName="/search?purpose=for-sale"
         buttonText="Explore Buying"
       />
-      {propertiesForSale.map((ppt) => (
-        <Property property={ppt} key={ppt.id} />
-      ))}
+      <Flex flexWrap="wrap">
+        {propertiesForSale.map((ppt) => (
+          <Property property={ppt} key={ppt.id} />
+        ))}
+      </Flex>
     </Box>
   );
 }
