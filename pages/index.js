@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Flex, Box, Text, Button } from '@chakra-ui/react';
 import { baseUrl, fetchApi } from '../utils/fetchApi';
+import Property from '../components/Property';
 
 const Banner = ({
   imageUrl,
@@ -38,8 +39,7 @@ const Banner = ({
   </Flex>
 );
 
-export default function Home({ propertyForSale, propertyForRent }) {
-  console.log(propertyForSale, propertyForRent);
+export default function Home({ propertiesForSale, propertiesForRent }) {
   return (
     <Box>
       <Banner
@@ -53,7 +53,9 @@ export default function Home({ propertyForSale, propertyForRent }) {
         buttonText="Explore Renting"
       />
       <Flex flexWrap="wrap">
-        {/* Fetch thee properties and map over here */}
+      {propertiesForRent.map((ppt) => (
+        <Property property={ppt} key={ppt.id} />
+      ))}
       </Flex>
       <Banner
         imageUrl="https://bayut-production.s3.eu-central-1.amazonaws.com/image/110993385/6a070e8e1bae4f7d8c1429bc303d2008"
@@ -65,7 +67,9 @@ export default function Home({ propertyForSale, propertyForRent }) {
         linkName="/search?purpose=for-sale"
         buttonText="Explore Buying"
       />
-      {/* Fetch thee properties and map over here */}
+      {propertiesForSale.map((ppt) => (
+        <Property property={ppt} key={ppt.id} />
+      ))}
     </Box>
   );
 }
@@ -80,8 +84,8 @@ export async function getStaticProps() {
 
   return {
     props: {
-      propertyForSale: propertiesForSale?.hits,
-      propertyForRent: propertiesForRent?.hits,
+      propertiesForSale: propertiesForSale?.hits,
+      propertiesForRent: propertiesForRent?.hits,
     },
   };
 }
