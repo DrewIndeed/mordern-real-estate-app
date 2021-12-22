@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Flex, Box, Text, Button } from '@chakra-ui/react';
+import { baseUrl, fetchApi } from '../utils/fetchApi';
 
 const Banner = ({
   imageUrl,
@@ -12,7 +13,7 @@ const Banner = ({
   linkName,
   buttonText,
 }) => (
-  <Flex flexDrop="wrap" justifyContent="center" alignItems="cneter" m="10">
+  <Flex flexWrap="wrap" justifyContent="center" alignItems="cneter" m="10">
     <Image src={imageUrl} width={500} height={300} alt="banner" />
     <Box p="5">
       <Text color="gray.500" fontSize="sm" fontWeight="medium">
@@ -37,9 +38,10 @@ const Banner = ({
   </Flex>
 );
 
-export default function Home() {
+export default function Home({ propertyForSale, propertyForRent }) {
+  console.log(propertyForSale, propertyForRent);
   return (
-    <div>
+    <Box>
       <Banner
         imageUrl="https://bayut-production.s3.eu-central-1.amazonaws.com/image/145426814/33973352624c48628e41f2ec460faba4"
         purpose="RENT A HOME"
@@ -50,6 +52,9 @@ export default function Home() {
         linkName="/search?purpose=for-rent"
         buttonText="Explore Renting"
       />
+      <Flex flexWrap="wrap">
+        {/* Fetch thee properties and map over here */}
+      </Flex>
       <Banner
         imageUrl="https://bayut-production.s3.eu-central-1.amazonaws.com/image/110993385/6a070e8e1bae4f7d8c1429bc303d2008"
         purpose="BUY A HOME"
@@ -60,6 +65,23 @@ export default function Home() {
         linkName="/search?purpose=for-sale"
         buttonText="Explore Buying"
       />
-    </div>
+      {/* Fetch thee properties and map over here */}
+    </Box>
   );
+}
+
+export async function getStaticProps() {
+  const propertiesForSale = await fetchApi(
+    `${baseUrl}/properties/list?locationExternalIDs=5002&purpose=for-sale&hitsPerPage=6`
+  );
+  const propertiesForRent = await fetchApi(
+    `${baseUrl}/properties/list?locationExternalIDs=5002&purpose=for-rent&hitsPerPage=6`
+  );
+
+  return {
+    props: {
+      propertyForSale: propertiesForSale?.hits,
+      propertyForRent: propertiesForRent?.hits,
+    },
+  };
 }
